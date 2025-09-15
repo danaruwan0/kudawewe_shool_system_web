@@ -1,0 +1,10 @@
+/* SweetAlert2 custom styles */
+.swal-title {
+  font-family: 'Poppins', sans-serif;  /* modern, clean font for title */
+  font-weight: 700;                     /* bold */
+}
+
+.swal-text {
+ font-family: 'Poppins', sans-serif;  /* modern, clean font for title */
+  font-weight: bold;
+}
