@@ -20,15 +20,42 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+
+// Icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SettingsIcon from '@mui/icons-material/Settings';
-import GradeIcon from '@mui/icons-material/Grade';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import PaymentsIcon from '@mui/icons-material/Payment';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import CampaignIcon from '@mui/icons-material/Campaign';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import ClassIcon from '@mui/icons-material/Class';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-// import Login page
+// Import dashbord pages page
 import Login from '../pages/Login/Login.jsx';
+
+import AttendancePage from '../pages/AttendancePage/AttendancePage.jsx';
+import ClassesPage from '../pages/ClassesPage/ClassesPage.jsx'
+import ExamsPage from '../pages/ExamsPage/ExamsPage.jsx'
+import LibraryPage from '../pages/LibraryPage/LibraryPage.jsx'
+import NoticesPage from '../pages/NoticesPage/NoticesPage.jsx'
+import PaymentsPage from '../pages/PaymentsPage/PaymentsPage.jsx'
+import ReportsPage from '../pages/ReportsPage/ReportsPage.jsx'
+import SettingsPage from '../pages/Settings/SettingsPage.jsx'
+
+import AddStudentPage from '../pages/StudentsPage/AddStudent/AddStudentPage.jsx'
+import DeleteStudentPage from '../pages/StudentsPage/DeleteStudent/DeleteStudentPage.jsx'
+import UpdateStudentPage from '../pages/StudentsPage/UpdateStudent/UpdateStudentPage.jsx'
+
+import AddTeachersPage from '../pages/TeachersPage/TeachersAdd/AddTeachersPage.jsx'
+import DeleteTeachersPage from '../pages/TeachersPage/TeachersDelete/DeleteTeachersPage.jsx'
+import UpdateTeachersPage from '../pages/TeachersPage/TeachersUpdate/UpdateTeachersPage.jsx'
+
 
 
 // ---------------- THEMES ----------------
@@ -64,6 +91,7 @@ const openedMixin = (theme) => ({
   }),
   overflowX: 'hidden',
 });
+
 const closedMixin = (theme) => ({
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -73,6 +101,7 @@ const closedMixin = (theme) => ({
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: { width: `calc(${theme.spacing(8)} + 1px)` },
 });
+
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -80,6 +109,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
+
 const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -97,6 +127,7 @@ const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
+
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
@@ -113,27 +144,73 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
+
 const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   margin: '4px 8px',
   borderRadius: '8px',
+  '& .MuiListItemIcon-root': {
+    minWidth: '32px', // smaller icon space
+    fontSize: '10px', // icon size
+  },
+  '& .MuiListItemText-primary': {
+    fontSize: '0.875rem', // smaller text
+  },
 }));
 
-// ---------------- ROUTES ----------------
+
+// ---------------- MENU ITEMS ----------------
 const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: "/dashboard" },
-  { text: 'Students', icon: <PeopleIcon />, path: "/students" },
-  { text: 'Assignments', icon: <AssignmentIcon />, path: "/assignments" },
-  { text: 'Grades', icon: <GradeIcon />, path: "/grades" },
-  { text: 'Schedule', icon: <CalendarMonthIcon />, path: "/schedule" },
+
+  {
+    text: 'Students',
+    icon: <PeopleIcon />,
+    path: "/students",
+    subMenu: [
+      { text: 'Add Student', icon: <AddIcon />, path: "/students/add" },
+      { text: 'Update Student', icon: <EditIcon />, path: "/students/update" },
+      { text: 'Delete Student', icon: <DeleteIcon />, path: "/students/delete" },
+    ]
+  },
+
+  {
+    text: 'Teachers',
+    icon: <PeopleIcon />,
+    path: "/teachers",
+
+    subMenu: [
+      { text: 'Add Teachers', icon: <AddIcon />, path: "/teachers/add" },
+      { text: 'Update Teachers', icon: <EditIcon />, path: "/teachers/update" },
+      { text: 'Delete Teachers', icon: <DeleteIcon />, path: "/teachers/delete" },
+    ]
+  },
+
+
+  { text: 'Classes / Courses', icon: <ClassIcon />, path: "/classes" },
+  { text: 'Attendance', icon: <ChecklistIcon />, path: "/attendance" },
+  { text: 'Exams / Results', icon: <AssignmentIcon />, path: "/exams" },
+  { text: 'Payments / Fees', icon: <PaymentsIcon />, path: "/payments" },
+  { text: 'Library', icon: <LibraryBooksIcon />, path: "/library" },
+  { text: 'Notices', icon: <CampaignIcon />, path: "/notices" },
+  { text: 'Reports / Analytics', icon: <BarChartIcon />, path: "/reports" },
   { text: 'Settings', icon: <SettingsIcon />, path: "/settings" },
 ];
 
-function Dashboard() { return <Typography>Dashboard Page</Typography>; }
-function Students() { return <Typography>Students Page</Typography>; }
-function Assignments() { return <Typography>Assignments Page</Typography>; }
-function Grades() { return <Typography>Grades Page</Typography>; }
-function Schedule() { return <Typography>Schedule Page</Typography>; }
-function Settings() { return <Typography>Settings Page</Typography>; }
+// ---------------- PAGES (dummy components) ----------------
+function Dashboard() { return <Typography variant="h4">Dashboard Page</Typography>; }
+function Students() { return <Typography variant="h4">Students Page</Typography>; }
+function AddStudent() { return <Typography variant="h5">Add Student Page</Typography>; }
+function UpdateStudent() { return <Typography variant="h5">Update Student Page</Typography>; }
+function DeleteStudent() { return <Typography variant="h5">Delete Student Page</Typography>; }
+function Teachers() { return <Typography variant="h4">Teachers Page</Typography>; }
+function Classes() { return <Typography variant="h4">Classes Page</Typography>; }
+function Attendance() { return <Typography variant="h4">Attendance Page</Typography>; }
+function Exams() { return <Typography variant="h4">Exams Page</Typography>; }
+function Payments() { return <Typography variant="h4">Payments Page</Typography>; }
+function Library() { return <Typography variant="h4">Library Page</Typography>; }
+function Notices() { return <Typography variant="h4">Notices Page</Typography>; }
+function Reports() { return <Typography variant="h4">Reports Page</Typography>; }
+function Settings() { return <Typography variant="h4">Settings Page</Typography>; }
 
 // ---------------- DRAWER CONTENT ----------------
 function MiniDrawerContent({ darkMode, setDarkMode }) {
@@ -160,7 +237,7 @@ function MiniDrawerContent({ darkMode, setDarkMode }) {
             color="inherit"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ marginRight: 5, ...(open && { display: 'none' }) }}
+            sx={{ mr: 5, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -183,15 +260,29 @@ function MiniDrawerContent({ darkMode, setDarkMode }) {
 
         <List sx={{ px: 1 }}>
           {menuItems.map((item, index) => (
-            <ListItem key={item.text} disablePadding>
-              <StyledListItemButton
-                selected={selectedIndex === index}
-                onClick={() => handleListItemClick(index, item.path)}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </StyledListItemButton>
-            </ListItem>
+            <Box key={item.text}>
+              <ListItem disablePadding>
+                <StyledListItemButton
+                  selected={selectedIndex === index}
+                  onClick={() => handleListItemClick(index, item.path)}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </StyledListItemButton>
+              </ListItem>
+              {item.subMenu && selectedIndex === index && (
+                <List sx={{ pl: 4 }}>
+                  {item.subMenu.map((subItem) => (
+                    <ListItem key={subItem.text} disablePadding>
+                      <StyledListItemButton onClick={() => navigate(subItem.path)}>
+                        <ListItemIcon>{subItem.icon}</ListItemIcon>
+                        <ListItemText primary={subItem.text} />
+                      </StyledListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+            </Box>
           ))}
         </List>
       </Drawer>
@@ -201,10 +292,24 @@ function MiniDrawerContent({ darkMode, setDarkMode }) {
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<Dashboard />} />
+
           <Route path="/students" element={<Students />} />
-          <Route path="/assignments" element={<Assignments />} />
-          <Route path="/grades" element={<Grades />} />
-          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/students/add" element={<AddStudent />} />
+          <Route path="/students/update" element={<UpdateStudent />} />
+          <Route path="/students/delete" element={<DeleteStudent />} />
+
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/teachers/add" element={<AddStudent />} />
+          <Route path="/teachers/update" element={<UpdateStudent />} />
+          <Route path="/teachers/delete" element={<DeleteStudent />} />
+
+          <Route path="/classes" element={<Classes />} />
+          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/exams" element={<Exams />} />
+          <Route path="/payments" element={<Payments />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/notices" element={<Notices />} />
+          <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </Box>
@@ -220,7 +325,7 @@ export default function MiniDrawer() {
     <ThemeProvider theme={darkMode ? blueDarkTheme : blueLightTheme}>
       <Router>
         <Routes>
-          {/* Login eka */}
+          {/* Login */}
           <Route path="/login" element={<Login />} />
 
           {/* Drawer UI after login */}
