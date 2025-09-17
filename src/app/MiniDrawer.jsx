@@ -36,27 +36,24 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-// Import dashbord pages page
+// Pages
 import Login from '../pages/Login/Login.jsx';
-
 import AttendancePage from '../pages/AttendancePage/AttendancePage.jsx';
-import ClassesPage from '../pages/ClassesPage/ClassesPage.jsx'
-import ExamsPage from '../pages/ExamsPage/ExamsPage.jsx'
-import LibraryPage from '../pages/LibraryPage/LibraryPage.jsx'
-import NoticesPage from '../pages/NoticesPage/NoticesPage.jsx'
-import PaymentsPage from '../pages/PaymentsPage/PaymentsPage.jsx'
-import ReportsPage from '../pages/ReportsPage/ReportsPage.jsx'
-import SettingsPage from '../pages/Settings/SettingsPage.jsx'
+import ClassesPage from '../pages/ClassesPage/ClassesPage.jsx';
+import ExamsPage from '../pages/ExamsPage/ExamsPage.jsx';
+import LibraryPage from '../pages/LibraryPage/LibraryPage.jsx';
+import NoticesPage from '../pages/NoticesPage/NoticesPage.jsx';
+import PaymentsPage from '../pages/PaymentsPage/PaymentsPage.jsx';
+import ReportsPage from '../pages/ReportsPage/ReportsPage.jsx';
+import SettingsPage from '../pages/Settings/SettingsPage.jsx';
 
-import AddStudentPage from '../pages/StudentsPage/AddStudent/AddStudentPage.jsx'
-import DeleteStudentPage from '../pages/StudentsPage/DeleteStudent/DeleteStudentPage.jsx'
-import UpdateStudentPage from '../pages/StudentsPage/UpdateStudent/UpdateStudentPage.jsx'
+import AddStudentPage from '../pages/StudentsPage/AddStudent/AddStudentPage.jsx';
+import DeleteStudentPage from '../pages/StudentsPage/DeleteStudent/DeleteStudentPage.jsx';
+import UpdateStudentPage from '../pages/StudentsPage/UpdateStudent/UpdateStudentPage.jsx';
 
-import AddTeachersPage from '../pages/TeachersPage/TeachersAdd/AddTeachersPage.jsx'
-import DeleteTeachersPage from '../pages/TeachersPage/TeachersDelete/DeleteTeachersPage.jsx'
-import UpdateTeachersPage from '../pages/TeachersPage/TeachersUpdate/UpdateTeachersPage.jsx'
-
-
+import AddTeachersPage from '../pages/TeachersPage/TeachersAdd/AddTeachersPage.jsx';
+import DeleteTeachersPage from '../pages/TeachersPage/TeachersDelete/DeleteTeachersPage.jsx';
+import UpdateTeachersPage from '../pages/TeachersPage/TeachersUpdate/UpdateTeachersPage.jsx';
 
 // ---------------- THEMES ----------------
 const blueDarkTheme = createTheme({
@@ -149,19 +146,17 @@ const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   margin: '4px 8px',
   borderRadius: '8px',
   '& .MuiListItemIcon-root': {
-    minWidth: '32px', // smaller icon space
-    fontSize: '10px', // icon size
+    minWidth: '32px',
+    fontSize: '10px',
   },
   '& .MuiListItemText-primary': {
-    fontSize: '0.875rem', // smaller text
+    fontSize: '0.875rem',
   },
 }));
-
 
 // ---------------- MENU ITEMS ----------------
 const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: "/dashboard" },
-
   {
     text: 'Students',
     icon: <PeopleIcon />,
@@ -172,20 +167,16 @@ const menuItems = [
       { text: 'Delete Student', icon: <DeleteIcon />, path: "/students/delete" },
     ]
   },
-
   {
     text: 'Teachers',
     icon: <PeopleIcon />,
     path: "/teachers",
-
     subMenu: [
       { text: 'Add Teachers', icon: <AddIcon />, path: "/teachers/add" },
       { text: 'Update Teachers', icon: <EditIcon />, path: "/teachers/update" },
       { text: 'Delete Teachers', icon: <DeleteIcon />, path: "/teachers/delete" },
     ]
   },
-
-
   { text: 'Classes / Courses', icon: <ClassIcon />, path: "/classes" },
   { text: 'Attendance', icon: <ChecklistIcon />, path: "/attendance" },
   { text: 'Exams / Results', icon: <AssignmentIcon />, path: "/exams" },
@@ -195,22 +186,6 @@ const menuItems = [
   { text: 'Reports / Analytics', icon: <BarChartIcon />, path: "/reports" },
   { text: 'Settings', icon: <SettingsIcon />, path: "/settings" },
 ];
-
-// ---------------- PAGES (dummy components) ----------------
-function Dashboard() { return <Typography variant="h4">Dashboard Page</Typography>; }
-function Students() { return <Typography variant="h4">Students Page</Typography>; }
-function AddStudent() { return <Typography variant="h5">Add Student Page</Typography>; }
-function UpdateStudent() { return <Typography variant="h5">Update Student Page</Typography>; }
-function DeleteStudent() { return <Typography variant="h5">Delete Student Page</Typography>; }
-function Teachers() { return <Typography variant="h4">Teachers Page</Typography>; }
-function Classes() { return <Typography variant="h4">Classes Page</Typography>; }
-function Attendance() { return <Typography variant="h4">Attendance Page</Typography>; }
-function Exams() { return <Typography variant="h4">Exams Page</Typography>; }
-function Payments() { return <Typography variant="h4">Payments Page</Typography>; }
-function Library() { return <Typography variant="h4">Library Page</Typography>; }
-function Notices() { return <Typography variant="h4">Notices Page</Typography>; }
-function Reports() { return <Typography variant="h4">Reports Page</Typography>; }
-function Settings() { return <Typography variant="h4">Settings Page</Typography>; }
 
 // ---------------- DRAWER CONTENT ----------------
 function MiniDrawerContent({ darkMode, setDarkMode }) {
@@ -290,27 +265,29 @@ function MiniDrawerContent({ darkMode, setDarkMode }) {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Routes>
+          {/* Default redirect */}
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Typography variant="h4">Dashboard Page</Typography>} />
 
-          <Route path="/students" element={<Students />} />
-          <Route path="/students/add" element={<AddStudent />} />
-          <Route path="/students/update" element={<UpdateStudent />} />
-          <Route path="/students/delete" element={<DeleteStudent />} />
+          {/* Students */}
+          <Route path="/students/add" element={<AddStudentPage />} />
+          <Route path="/students/update" element={<UpdateStudentPage />} />
+          <Route path="/students/delete" element={<DeleteStudentPage />} />
 
-          <Route path="/teachers" element={<Teachers />} />
-          <Route path="/teachers/add" element={<AddStudent />} />
-          <Route path="/teachers/update" element={<UpdateStudent />} />
-          <Route path="/teachers/delete" element={<DeleteStudent />} />
+          {/* Teachers */}
+          <Route path="/teachers/add" element={<AddTeachersPage />} />
+          <Route path="/teachers/update" element={<UpdateTeachersPage />} />
+          <Route path="/teachers/delete" element={<DeleteTeachersPage />} />
 
-          <Route path="/classes" element={<Classes />} />
-          <Route path="/attendance" element={<Attendance />} />
-          <Route path="/exams" element={<Exams />} />
-          <Route path="/payments" element={<Payments />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/notices" element={<Notices />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/settings" element={<Settings />} />
+          {/* Other Pages */}
+          <Route path="/classes" element={<ClassesPage />} />
+          <Route path="/attendance" element={<AttendancePage />} />
+          <Route path="/exams" element={<ExamsPage />} />
+          <Route path="/payments" element={<PaymentsPage />} />
+          <Route path="/library" element={<LibraryPage />} />
+          <Route path="/notices" element={<NoticesPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </Box>
     </Box>
@@ -327,12 +304,8 @@ export default function MiniDrawer() {
         <Routes>
           {/* Login */}
           <Route path="/login" element={<Login />} />
-
           {/* Drawer UI after login */}
           <Route path="/*" element={<MiniDrawerContent darkMode={darkMode} setDarkMode={setDarkMode} />} />
-
-          {/* Default → login */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
       </Router>
     </ThemeProvider>
